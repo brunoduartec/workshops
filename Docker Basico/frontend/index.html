@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Docker Frontend com Redis</title>
+</head>
+<body>
+  <h1>Exemplo Docker + Node + Redis</h1>
+  
+  <!-- Exibe a mensagem vinda da rota /api/hello -->
+  <div id="helloMessage"></div>
+
+  <hr />
+
+  <!-- Exemplo de contador armazenado no Redis -->
+  <button id="clickBtn">Clique!</button>
+  <div id="clickCount"></div>
+
+  <script>
+    // Chamada simples para /api/hello
+    fetch('http://localhost:3000/api/hello')
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('helloMessage').textContent = data.message;
+      })
+      .catch(error => console.error('Erro ao chamar /api/hello:', error));
+
+    // Incrementar contador no Redis ao clicar no botão
+    document.getElementById('clickBtn').addEventListener('click', () => {
+      fetch('http://localhost:3000/api/click')
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById('clickCount').textContent = `Cliques: ${data.clicks}`;
+        })
+        .catch(error => console.error('Erro ao chamar /api/click:', error));
+    });
+  </script>
+</body>
+</html>

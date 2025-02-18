@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  # Serviço do backend Node.js
+  backend:
+    build:
+      context: ./backend
+    container_name: node_api
+    ports:
+      - "3000:3000"
+    depends_on:
+      - redis
+    # Se precisar, pode adicionar variáveis de ambiente, etc.
+
+  # Serviço do frontend (Nginx)
+  frontend:
+    build:
+      context: ./frontend
+    container_name: front_nginx
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+
+  # Serviço do Redis (armazena o cache)
+  redis:
+    image: redis:alpine
+    container_name: my_redis
+    ports:
+      - "6379:6379"
+
+  # Serviço do Redis Commander (interface web para visualizar dados do Redis)
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    container_name: redis_commander
+    environment:
+      # Configurando para acessar o serviço 'redis' no host e porta correspondentes
+      - REDIS_HOSTS=local:redis:6379
+    ports:
+      - "8081:8081"
+    depends_on:
+      - redis
