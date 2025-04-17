@@ -29,10 +29,14 @@ interface IWorkable {
   }
   
   // Uso
+
+  console.log("Exemplo de uso: Human");
   const human: IWorkable & IEatable & ISleepable = new HumanWorker();
   human.work();
   human.eat();
   human.sleep();
   
+
+  console.log("Exemplo de uso: Robô");
   const robot: IWorkable = new RobotWorker();
   robot.work();
