@@ -2,18 +2,15 @@
     "version": "0.2.0",
     "configurations": [
       {
-        "type": "node",
+        "type": "pwa-node",
         "request": "launch",
-        "name": "Debug arquivo atual (ts-node)",
-        "program": "${workspaceFolder}/node_modules/ts-node/dist/bin.js",
-        "args": ["${file}"],
-        "cwd": "${workspaceFolder}",
-        "runtimeArgs": ["--loader", "ts-node/esm"],
-        "env": {
-          "TS_NODE_PROJECT": "${workspaceFolder}/tsconfig.json"
-        },
+        "name": "Debug TS File",
         "skipFiles": ["<node_internals>/**"],
-        "console": "integratedTerminal"
+        "program": "${file}",
+        "runtimeArgs": ["-r", "ts-node/register"],
+        "env": {
+          "TS_NODE_PROJECT": "tsconfig.json"
+        }
       }
     ]
   }

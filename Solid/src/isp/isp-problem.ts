@@ -29,3 +29,24 @@ interface IWorkerProblem {
       throw new Error("Robôs não dormem");
     }
   }
+
+
+  const humanWorker = new HumanWorkerProblem();
+  humanWorker.work(); // Trabalhando...
+  humanWorker.eat(); // Comendo...
+  humanWorker.sleep(); // Dormindo...
+
+  const robotWorker = new RobotWorkerProblem();
+  robotWorker.work(); // Trabalhando...
+  try {
+    robotWorker.eat(); // Erro: Robôs não comem
+  }
+  catch (error: any) {
+    console.error(error.message);
+  }
+  try {
+    robotWorker.sleep(); // Erro: Robôs não dormem
+  }
+  catch (error: any) {
+    console.error(error.message);
+  }

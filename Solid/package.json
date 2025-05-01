@@ -1,13 +1,17 @@
 {
   "name": "workshop-solid",
   "version": "1.0.0",
-  "type": "module",
+  "type": "commonjs",
+  "main": "index.js",
   "scripts": {
-    "start": "ts-node dip/dip-solution.ts"
+    "start": "ts-node src/dip/dip-solution.ts",
+    "build": "tsc",
+    "dev": "ts-node-dev --respawn src/dip/dip-solution.ts"
   },
+  "dependencies": {},
   "devDependencies": {
     "ts-node": "^10.9.1",
-    "typescript": "^5.0.0",
-    "@types/node": "^20.0.0"
+    "typescript": "^5.3.3",
+    "ts-node-dev": "^2.0.0"
   }
 }

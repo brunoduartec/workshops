@@ -1,5 +1,5 @@
 class UserServiceProblem {
-    createUser(name: string, email: string) {
+    public createUser(name: string, email: string) {
       // Validação simples
       if (!email.includes("@")) {
         throw new Error("Email inválido");
@@ -27,4 +27,4 @@ class UserServiceProblem {
   
   // Uso
   const userServiceProblem = new UserServiceProblem();
-  userService.createUser("João", "joao@example.com");
+  userServiceProblem.createUser("João", "joao@example.com");
