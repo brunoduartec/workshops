@@ -1,8 +1,8 @@
 # Patterns Selecionados
 
 	1.	Strategy
-	2.	Factory Method
-	3.	Observer
+	2.	Observer
+	3.	Factory Method
 	4.	Singleton (ainda muito usado, mas controverso)
 	5.	Decorator
 	6.	Builder
@@ -23,3 +23,20 @@ Para fins de redução de escopo, os padrões acima foram selecionados
 | **LSP** - Liskov Substitution Principle | Template Method, Strategy |
 | **ISP** - Interface Segregation Principle | Observer |
 | **DIP** - Dependency Inversion Principle | Strategy, Factory Method, Abstract Factory, Command, Proxy, Singleton (negativamente), Observer |
+
+
+## Redução de escopo
+
+[C] Criação
+[S] Estrutural
+[B] Comportamento
+
+| **Princípio SOLID** | **Design Patterns Relacionados** |
+|---------------------|----------------------------------|
+| **SRP** - Single Responsibility Principle | Builder[C], Command[B] |
+| **OCP** - Open/Closed Principle | Strategy[B], Command[B], Observer[B], Builder[C]|
+| **LSP** - Liskov Substitution Principle | Strategy[B] |
+| **ISP** - Interface Segregation Principle | Observer[B] |
+| **DIP** - Dependency Inversion Principle | Strategy[B], Command[[B]], Observer[B] |
+
+

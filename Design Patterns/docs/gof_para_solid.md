@@ -1,15 +1,15 @@
 
 # Correlação entre Design Patterns (GoF) e Princípios SOLID
 
-## 🧱 Padrões Criacionais
+## 🧱 Padrões de Criação
 
 | **Padrão GoF**       | Categoria     | Princípios SOLID Relacionados     | Justificativa |
 |----------------------|---------------|-----------------------------------|---------------|
-| Singleton            | Criacional    | SRP, DIP (negativamente)          | Centraliza uma única responsabilidade, mas fere o DIP por criar forte acoplamento e dificultar testes |
-| Factory Method       | Criacional    | OCP, DIP                          | Permite criar objetos sem depender de suas classes concretas |
-| Abstract Factory     | Criacional    | OCP, DIP                          | Criação de famílias de objetos sem acoplamento direto, favorecendo abstrações |
-| Builder              | Criacional    | SRP, OCP                          | Separa a construção de um objeto complexo da sua representação |
-| Prototype            | Criacional    | OCP                               | Cria novos objetos a partir de clones, sem depender de implementações específicas |
+| Singleton            | Criação    | SRP, DIP (negativamente)          | Centraliza uma única responsabilidade, mas fere o DIP por criar forte acoplamento e dificultar testes |
+| Factory Method       | Criação    | OCP, DIP                          | Permite criar objetos sem depender de suas classes concretas |
+| Abstract Factory     | Criação    | OCP, DIP                          | Criação de famílias de objetos sem acoplamento direto, favorecendo abstrações |
+| Builder              | Criação    | SRP, OCP                          | Separa a construção de um objeto complexo da sua representação |
+| Prototype            | Criação    | OCP                               | Cria novos objetos a partir de clones, sem depender de implementações específicas |
 
 ## 🧱 Padrões Estruturais
 
