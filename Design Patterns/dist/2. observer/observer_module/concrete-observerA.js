@@ -10,9 +10,9 @@ class ConcreteObserverA {
         this.state = observer_interface_1.ObserverStatus.PENDING;
     }
     update(data) {
-        if (data?.eventType !== this.eventType) {
+        if (data?.eventType == this.eventType) {
             if (typeof data?.info === 'string') {
-                console.error(`Error: ${JSON.parse(data.info)}`);
+                console.error(`Error: ${data.info}`);
             }
             else {
                 console.error('Error: Invalid data format');
