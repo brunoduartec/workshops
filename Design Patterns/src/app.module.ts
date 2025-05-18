@@ -1,3 +1,4 @@
+import { ChainModule } from './../6. chain off responsibility/chain.module';
 import { AdapterParserModule } from './../4. adapter/adapter_parser_module/adapterparser.module';
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
@@ -9,6 +10,7 @@ import { AdapterModule } from '4. adapter/adapter_module/adapter.module';
 
 @Module({
   imports: [
+    ChainModule,
     AdapterParserModule,
     BuilderModule,
     ObserverModule,
