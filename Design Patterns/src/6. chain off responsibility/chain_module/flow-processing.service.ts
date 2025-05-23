@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { FlowHandler } from './flow-handler.interface';
 import { FlowContext } from './flow-context';
-import { MessageDataDto } from './dtos/message-data.dto';
+import { MessageDataDto } from '../../shared/dtos/message-data.dto';
 
 @Injectable()
 export class FlowProcessingService {

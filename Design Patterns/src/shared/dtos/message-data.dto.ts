@@ -21,6 +21,11 @@ export class ClienteDto {
 }
 
 export class MessageDataDto {
+
+  @IsOptional()
+  @IsString()
+  messageId: string;
+
   @IsString()
   @IsNotEmpty()
   conteudo: string;
@@ -38,4 +43,8 @@ export class MessageDataDto {
   @IsOptional()
   @IsObject()
   metadados?: Record<string, any>;
+
+  @IsOptional()
+  @IsString()
+  type?: string;
 }

@@ -1,14 +1,31 @@
+# Mapeamento entre SOLID e padrões GoF
 
-# Correlação dos Princípios SOLID com Design Patterns (GoF)
+## 🧱 Padrões Criacionais
 
-Esta tabela tem como objetivo ajudar desenvolvedores a identificar padrões de projeto a partir dos princípios SOLID. A ideia é: ao perceber que um princípio está sendo violado, o desenvolvedor pode consultar os padrões que ajudam a resolver esse problema.
+| Princípio SOLID                 | Padrões Criacionais Relacionados                                |
+| ------------------------------- | --------------------------------------------------------------- |
+| **SRP (Single Responsibility)** | Abstract Factory, Builder, Factory Method                       |
+| **OCP (Open/Closed)**           | Abstract Factory, Builder, Factory Method, Prototype, Singleton |
+| **LSP (Liskov Substitution)**   | Abstract Factory, Builder, Factory Method, Prototype            |
+| **ISP (Interface Segregation)** | *(nenhum diretamente relacionado)*                              |
+| **DIP (Dependency Inversion)**  | Abstract Factory, Builder, Factory Method, Prototype            |
 
-| **Princípio SOLID** | **Design Patterns Relacionados** |
-|---------------------|----------------------------------|
-| **SRP** - Single Responsibility Principle | Facade, Mediator, Builder, Chain of Responsibility, Command, Interpreter, Iterator, Memento, Singleton, Flyweight |
-| **OCP** - Open/Closed Principle | Strategy, Decorator, Template Method, Factory Method, Abstract Factory, Prototype, Adapter, Composite, Bridge, Proxy, Observer, State, Visitor, Interpreter, Command, Chain of Responsibility, Builder |
-| **LSP** - Liskov Substitution Principle | Composite, Template Method, State, Strategy |
-| **ISP** - Interface Segregation Principle | Observer, Visitor |
-| **DIP** - Dependency Inversion Principle | Strategy, Bridge, Factory Method, Abstract Factory, Command, Mediator, Proxy, Singleton (negativamente), Observer |
+## 🧩 Padrões Estruturais
 
-> Nota: Alguns padrões aparecem em mais de um princípio porque ajudam a resolver múltiplas violações. O contexto de uso determina qual princípio está mais fortemente relacionado.
+| Princípio SOLID                 | Padrões Estruturais Relacionados                                |
+| ------------------------------- | --------------------------------------------------------------- |
+| **SRP (Single Responsibility)** | Adapter, Bridge, Composite, Decorator, Facade, Flyweight, Proxy |
+| **OCP (Open/Closed)**           | Adapter, Bridge, Composite, Decorator, Flyweight, Proxy         |
+| **LSP (Liskov Substitution)**   | Adapter, Bridge, Composite, Decorator, Flyweight, Proxy         |
+| **ISP (Interface Segregation)** | Adapter, Facade                                                 |
+| **DIP (Dependency Inversion)**  | Adapter, Bridge, Composite, Decorator, Facade, Flyweight, Proxy |
+
+## ⚙️ Padrões Comportamentais
+
+| Princípio SOLID                 | Padrões Comportamentais Relacionados                                                                                            |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| **SRP (Single Responsibility)** | Chain of Responsibility, Command, Interpreter, Iterator, Mediator, Memento, Observer, State, Strategy, Template Method, Visitor |
+| **OCP (Open/Closed)**           | Chain of Responsibility, Command, Interpreter, Iterator, Mediator, Observer, State, Strategy, Template Method, Visitor          |
+| **LSP (Liskov Substitution)**   | Chain of Responsibility, Command, Interpreter, Iterator, Mediator, Observer, State, Strategy, Template Method, Visitor          |
+| **ISP (Interface Segregation)** | Command, Observer, Strategy                                                                                                     |
+| **DIP (Dependency Inversion)**  | Chain of Responsibility, Command, Interpreter, Iterator, Mediator, Observer, State, Strategy, Visitor                           |

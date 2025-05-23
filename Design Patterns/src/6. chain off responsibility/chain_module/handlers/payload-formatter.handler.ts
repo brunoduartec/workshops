@@ -1,4 +1,4 @@
-import { MessageDataDto } from '../dtos/message-data.dto';
+import { MessageDataDto } from '../../../shared/dtos/message-data.dto';
 import { FlowContext } from '../flow-context';
 import { FlowHandler } from '../flow-handler.interface';
 import { Injectable } from '@nestjs/common';

@@ -4,7 +4,7 @@ https://docs.nestjs.com/controllers#controllers
 
 import { Body, Controller, Post } from '@nestjs/common';
 import { FlowProcessingService } from './flow-processing.service';
-import { MessageDataDto } from './dtos/message-data.dto';
+import { MessageDataDto } from '../../shared/dtos/message-data.dto';
 
 @Controller('chain')
 export class ChainController {
