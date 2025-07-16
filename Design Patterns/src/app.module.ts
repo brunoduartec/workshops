@@ -1,3 +1,4 @@
+import { FacadeModule } from './7. facade/facade/facade.module';
 import { BullModule } from '@nestjs/bullmq';
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
@@ -13,6 +14,7 @@ import { ChainModule } from './6. chain off responsibility/chain_module/chain.mo
 
 @Module({
   imports: [
+    FacadeModule,
     BullModule.forRoot({
       connection: {
         host: 'localhost',
@@ -20,6 +22,7 @@ import { ChainModule } from './6. chain off responsibility/chain_module/chain.mo
         maxRetriesPerRequest: null, // 👈 necessário para BullMQ
       },
     }),
+    
     CommandModule,
     ChainModule,
     AdapterParserModule,
