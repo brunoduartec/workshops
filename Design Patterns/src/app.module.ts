@@ -1,3 +1,5 @@
+import { TemplateModule } from './9. template method/template method/template.module';
+import { DecoratorModule } from './8. decorator/decorator/decorator.module';
 import { FacadeModule } from './7. facade/facade/facade.module';
 import { BullModule } from '@nestjs/bullmq';
 import { Module } from '@nestjs/common';
@@ -14,7 +16,6 @@ import { ChainModule } from './6. chain off responsibility/chain_module/chain.mo
 
 @Module({
   imports: [
-    FacadeModule,
     BullModule.forRoot({
       connection: {
         host: 'localhost',
@@ -22,17 +23,18 @@ import { ChainModule } from './6. chain off responsibility/chain_module/chain.mo
         maxRetriesPerRequest: null, // 👈 necessário para BullMQ
       },
     }),
-    
+    StrategyModule,
+    ObserverModule,
+    BuilderModule,
+    AdapterParserModule,
+    AdapterModule,
     CommandModule,
     ChainModule,
-    AdapterParserModule,
-    BuilderModule,
-    ObserverModule,
-    StrategyModule,
-    AdapterModule
+    FacadeModule,
+    DecoratorModule,
+    TemplateModule,
   ],
   controllers: [AppController],
-  providers: [
-    AppService],
+  providers: [AppService],
 })
 export class AppModule { }
