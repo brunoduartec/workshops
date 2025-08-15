@@ -1,3 +1,3 @@
 export interface SmsService {
-  sendSms(to: string, message: string): Promise<void>;
+  sendSms(to: string, message: string): void;
 }

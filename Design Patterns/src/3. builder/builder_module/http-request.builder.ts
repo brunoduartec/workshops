@@ -1,5 +1,7 @@
+import { Injectable } from '@nestjs/common';
 import { HttpRequest } from './http-request.model';
 
+@Injectable()
 export class HttpRequestBuilder {
   private method: 'GET' | 'POST' | 'PUT' | 'DELETE';
   private url: string;

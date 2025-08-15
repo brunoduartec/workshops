@@ -6,7 +6,7 @@ import { FakePushClient } from '../external/fake-push-client';
 export class ExpoPushAdapter implements PushService {
   constructor(private readonly client: FakePushClient) {}
 
-  async sendPush(to: string, message: string): Promise<void> {
-    await this.client.push(to, message);
+  sendPush(to: string, message: string): void {
+    this.client.push(to, message);
   }
 }

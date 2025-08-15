@@ -4,8 +4,8 @@ https://docs.nestjs.com/providers#services
 
 import { Injectable } from '@nestjs/common';
 import { ProviderAdapter } from './interfaces/provider.interface';
-import { ProviderAAdapterService } from './adapters/provideraadapter.service';
-import { ProviderBAdapterService } from './adapters/providerbadapter.service';
+import { ProviderAAdapterService } from './adapters/provider-a-adapter.service';
+import { ProviderBAdapterService } from './adapters/provider-b-adapter.service';
 
 @Injectable()
 export class AdapterFactoryService {

@@ -4,8 +4,8 @@ https://docs.nestjs.com/modules
 
 import { Module } from '@nestjs/common';
 import { AdapterParserController } from './adapterparser.controller';
-import { ProviderAAdapterService } from './adapters/provideraadapter.service';
-import { ProviderBAdapterService } from './adapters/providerbadapter.service';
+import { ProviderAAdapterService } from './adapters/provider-a-adapter.service';
+import { ProviderBAdapterService } from './adapters/provider-b-adapter.service';
 import { AdapterFactoryService } from './adapterfactory.service';
 import { ParserService } from './parser.service';
 

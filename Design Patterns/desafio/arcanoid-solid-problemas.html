@@ -1,0 +1,198 @@
+// Exemplo de código de um jogo simples de Arcanoid em JavaScript usando Three.js
+// Este código possui problemas propositais relacionados aos princípios SOLID
+// Para rodar, basta abrir o arquivo HTML em um navegador com acesso à internet
+// (Three.js é carregado via CDN)
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Arcanoid com Problemas de SOLID</title>
+  <style>
+    body { margin: 0; overflow: hidden; }
+    canvas {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+  </style>
+</head>
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.153.0/build/three.min.js"></script>
+  <script>
+    // Violação SRP: Game faz tudo (render, lógica, input, etc)
+    class Game {
+      constructor() {
+        this.scene = new THREE.Scene();
+        this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        this.renderer = new THREE.WebGLRenderer();
+
+        this.renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(this.renderer.domElement);
+
+        // Adiciona borda visual (quatro linhas)
+        const borderMaterial = new THREE.LineBasicMaterial({ color: 0xffffff });
+        const borderPoints = [
+          [ [-5.5, -7, 0], [-5.5, 7.5, 0] ], // esquerda
+          [ [5.5, -7, 0], [5.5, 7.5, 0] ],   // direita
+          [ [-5.5, 7.5, 0], [5.5, 7.5, 0] ], // topo
+          [ [-5.5, -7, 0], [5.5, -7, 0] ]   // base
+        ];
+        borderPoints.forEach(pair => {
+          const geometry = new THREE.BufferGeometry().setFromPoints([
+            new THREE.Vector3(...pair[0]),
+            new THREE.Vector3(...pair[1])
+          ]);
+          const line = new THREE.Line(geometry, borderMaterial);
+          this.scene.add(line);
+        });
+
+        // Paddle
+        this.paddle = new THREE.Mesh(
+          new THREE.BoxGeometry(2, 0.5, 0.5),
+          new THREE.MeshBasicMaterial({ color: 0x00ff00 })
+        );
+        this.paddle.position.y = -5;
+        this.scene.add(this.paddle);
+
+        // Ball
+        this.ball = new THREE.Mesh(
+          new THREE.SphereGeometry(0.3, 16, 16),
+          new THREE.MeshBasicMaterial({ color: 0xffff00 })
+        );
+        this.ball.position.set(0, -4, 0);
+        this.scene.add(this.ball);
+        this.ballVelocity = { x: 0.1, y: 0.1 };
+
+        // Bricks
+        this.bricks = [];
+        for (let i = -4; i <= 4; i += 2) {
+          for (let j = 2; j <= 6; j += 1) {
+            let brick = new THREE.Mesh(
+              new THREE.BoxGeometry(1.8, 0.5, 0.5),
+              new THREE.MeshBasicMaterial({ color: 0xff0000 })
+            );
+            brick.position.set(i, j, 0);
+            this.scene.add(brick);
+            this.bricks.push(brick);
+          }
+        }
+
+        this.camera.position.z = 10;
+
+  this.score = 0;
+  this.lives = 3;
+  this.isGameOver = false;
+
+
+  // Cria elemento para exibir pontos
+  this.scoreDiv = document.createElement('div');
+  this.scoreDiv.style.position = 'absolute';
+  this.scoreDiv.style.top = '10px';
+  this.scoreDiv.style.left = '10px';
+  this.scoreDiv.style.color = 'white';
+  this.scoreDiv.style.fontSize = '24px';
+  this.scoreDiv.style.fontFamily = 'monospace';
+  this.scoreDiv.style.zIndex = '1';
+  this.scoreDiv.innerText = 'Pontos: 0';
+  document.body.appendChild(this.scoreDiv);
+
+  // Cria elemento para exibir vidas
+  this.livesDiv = document.createElement('div');
+  this.livesDiv.style.position = 'absolute';
+  this.livesDiv.style.top = '10px';
+  this.livesDiv.style.left = '160px';
+  this.livesDiv.style.color = 'white';
+  this.livesDiv.style.fontSize = '24px';
+  this.livesDiv.style.fontFamily = 'monospace';
+  this.livesDiv.style.zIndex = '1';
+  this.livesDiv.innerText = 'Vidas: ' + this.lives;
+  document.body.appendChild(this.livesDiv);
+
+  // Cria elemento para exibir GAME OVER
+  this.gameOverDiv = document.createElement('div');
+  this.gameOverDiv.style.position = 'absolute';
+  this.gameOverDiv.style.top = '50%';
+  this.gameOverDiv.style.left = '50%';
+  this.gameOverDiv.style.transform = 'translate(-50%, -50%)';
+  this.gameOverDiv.style.color = 'red';
+  this.gameOverDiv.style.fontSize = '64px';
+  this.gameOverDiv.style.fontFamily = 'monospace';
+  this.gameOverDiv.style.zIndex = '2';
+  this.gameOverDiv.style.display = 'none';
+  this.gameOverDiv.innerText = 'GAME OVER';
+  document.body.appendChild(this.gameOverDiv);
+
+        // Violação OCP: lógica de input hardcoded
+        document.addEventListener('mousemove', (e) => {
+          this.paddle.position.x = (e.clientX / window.innerWidth) * 10 - 5;
+        });
+
+  this.animate = this.animate.bind(this);
+  this.animate();
+      }
+
+      // Violação ISP: método grande, faz tudo
+      animate() {
+        if (this.isGameOver) {
+          this.gameOverDiv.style.display = 'block';
+          return;
+        }
+        requestAnimationFrame(this.animate);
+
+        // Ball movement
+        this.ball.position.x += this.ballVelocity.x;
+        this.ball.position.y += this.ballVelocity.y;
+
+        // Wall collision
+        if (this.ball.position.x < -5 || this.ball.position.x > 5) {
+          this.ballVelocity.x *= -1;
+        }
+        if (this.ball.position.y > 7) {
+          this.ballVelocity.y *= -1;
+        }
+        // Paddle collision
+        if (
+          this.ball.position.y < this.paddle.position.y + 0.5 &&
+          this.ball.position.y > this.paddle.position.y &&
+          Math.abs(this.ball.position.x - this.paddle.position.x) < 1.2
+        ) {
+          this.ballVelocity.y *= -1;
+        }
+        // Bottom collision
+        if (this.ball.position.y < -7) {
+          this.lives--;
+          this.livesDiv.innerText = 'Vidas: ' + this.lives;
+          if (this.lives <= 0) {
+            this.isGameOver = true;
+            this.gameOverDiv.style.display = 'block';
+            return;
+          }
+          this.ball.position.set(0, -4, 0);
+          this.ballVelocity = { x: 0.1, y: 0.1 };
+        }
+        // Brick collision
+        for (let i = 0; i < this.bricks.length; i++) {
+          let brick = this.bricks[i];
+          if (!brick.visible) continue;
+          if (
+            Math.abs(this.ball.position.x - brick.position.x) < 1 &&
+            Math.abs(this.ball.position.y - brick.position.y) < 0.5
+          ) {
+            brick.visible = false;
+            this.ballVelocity.y *= -1;
+            this.score += 10;
+            this.scoreDiv.innerText = 'Pontos: ' + this.score;
+          }
+        }
+        this.renderer.render(this.scene, this.camera);
+      }
+    }
+
+    // Inicia o jogo
+    new Game();
+  </script>
+</body>
+</html>

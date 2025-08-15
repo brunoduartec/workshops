@@ -6,7 +6,7 @@ import { FakeEmailClient } from '../external/fake-email-client';
 export class NodemailerEmailAdapter implements EmailService {
   constructor(private readonly client: FakeEmailClient) {}
 
-  async sendEmail(to: string, subject: string, body: string): Promise<void> {
-    await this.client.dispatch(to, subject, body);
+  sendEmail(to: string, subject: string, body: string): void {
+    this.client.dispatch(to, subject, body);
   }
 }

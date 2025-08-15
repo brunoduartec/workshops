@@ -6,6 +6,11 @@
 * Dificuldade em manter a consistência entre objetos dependentes quando o estado do objeto principal muda.
 * Viola o princípio do baixo acoplamento e da separação clara de responsabilidades.
 
+## Intenção
+
+Permitir que um objeto notifique outros objetos sobre mudanças de estado de forma flexível e desacoplada.
+
+
 ## Solução
 
 * Definir uma interface comum para observadores (`Observer`) que receberão notificações.

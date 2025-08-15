@@ -2,8 +2,9 @@
 https://docs.nestjs.com/controllers#controllers
 */
 
-import { Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import { BuilderService } from './builder.service';
+import { MessageDataDto } from 'src/shared/dtos/message-data.dto';
 
 @Controller('builder')
 export class BuilderController {
@@ -12,7 +13,7 @@ export class BuilderController {
   ) {}
 
   @Post('')
-  send() {
-    return this.builderService.send(); // Call the service method
+  send(@Body() body: MessageDataDto) {
+    return this.builderService.send(body);
   }
 }

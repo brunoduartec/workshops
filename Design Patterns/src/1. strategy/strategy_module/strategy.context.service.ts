@@ -2,8 +2,8 @@
 https://docs.nestjs.com/providers#services
 */
 
-import { Injectable } from '@nestjs/common';
-import { IStrategy } from './interfaces/strategy.interface';
+import { BadRequestException, Injectable } from '@nestjs/common';
+import { IStrategy, StrategyOutputDTO } from './interfaces/strategy.interface';
 import { TextMessageStrategy } from './strategies/text-message.strategy';
 import { TemplateMessageStrategy } from './strategies/template-message.strategy';
 
@@ -22,13 +22,15 @@ export class StrategyContextService {
   getStrategy(type: string): IStrategy {
     const strategy = this.strategies.get(type);
     if (!strategy) {
-      throw new Error(`Strategy not found for type: ${type}`);
+      throw new BadRequestException(
+        `Strategy not found for type: ${type}. Valores aceitos: "text" ou "template".`,
+      );
     }
     return strategy;
   }
 
-  async executeStrategy(type: string, data: any): Promise<any> {
+  executeStrategy(type: string, data: any): StrategyOutputDTO {
     const strategy = this.getStrategy(type);
-    return await strategy.execute(data);
+    return strategy.execute(data);
   }
 }

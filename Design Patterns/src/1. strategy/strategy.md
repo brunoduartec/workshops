@@ -6,6 +6,10 @@
 - Dificuldade para escalar ou alterar comportamentos sem alterar o código existente.
 - Viola o Princípio Aberto-Fechado (OCP) do SOLID.
 
+## Intenção
+
+Definir uma família de algoritmos, encapsular cada um deles e torná-los intercambiáveis. O padrão Strategy permite que o algoritmo varie independentemente dos clientes que o utilizam.
+
 ## Solução
 
 - Criar uma interface comum (`Strategy`) com diferentes implementações para cada comportamento.

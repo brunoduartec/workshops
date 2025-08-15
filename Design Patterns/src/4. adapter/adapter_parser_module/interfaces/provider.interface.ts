@@ -1,5 +1,5 @@
-import { StandardInputDto } from '../dto/standard-input.dto';
+import { StandardOutputDto } from '../dto/standard-output.dto';
 
 export interface ProviderAdapter {
-  transform(input: any): StandardInputDto;
+  transform(input: any): StandardOutputDto;
 }
