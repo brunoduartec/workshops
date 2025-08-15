@@ -4,7 +4,7 @@ https://docs.nestjs.com/providers#services
 
 import { Injectable } from '@nestjs/common';
 import { ProviderAdapter } from '../interfaces/provider.interface';
-import { StandardInputDto } from '../dto/standard-input.dto';
+import { StandardOutputDto } from '../dto/standard-output.dto';
 
 interface ProviderAInput {
   nome_completo: string;
@@ -14,7 +14,7 @@ interface ProviderAInput {
 
 @Injectable()
 export class ProviderAAdapterService implements ProviderAdapter {
-  transform(input: ProviderAInput): StandardInputDto {
+  transform(input: ProviderAInput): StandardOutputDto {
     return {
       name: input.nome_completo,
       email: input.contato_email,

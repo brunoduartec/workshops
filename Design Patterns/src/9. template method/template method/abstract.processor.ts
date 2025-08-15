@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
 import { Injectable } from '@nestjs/common';
 import { MessageProcessor } from './interfaces/message.processor.interfaces';
 import { MessageDataDto } from 'src/shared/dtos/message-data.dto';
@@ -13,7 +15,7 @@ export interface MessageData {
 
 @Injectable()
 export abstract class AbstractProcessor implements MessageProcessor {
-  async process(message: MessageDataDto): Promise<MessageSentResponseDto> {
+  async templateMethod(message: MessageDataDto): Promise<MessageSentResponseDto> {
     const parsedData: MessageData = await this.parseData(message);
     if (!this.validateData(parsedData)) {
       throw new Error('Invalid data');

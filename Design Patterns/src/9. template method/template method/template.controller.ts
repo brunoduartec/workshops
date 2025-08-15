@@ -17,7 +17,7 @@ export class TemplateController {
   async handleTemplateMessage(
     @Body() messageData: MessageDataDto
   ): Promise<MessageSentResponseDto> {
-    const messageSent:MessageSentResponseDto  = await this.whatsappMessageProcessor.process(messageData);
+    const messageSent:MessageSentResponseDto  = await this.whatsappMessageProcessor.templateMethod(messageData);
 
     if (!messageSent.messageId) {
       throw new Error('Failed to process message');

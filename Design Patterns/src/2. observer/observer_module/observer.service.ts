@@ -2,22 +2,20 @@
 https://docs.nestjs.com/providers#services
 */
 
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { ConcreteSubject } from './subject';
-import { ConcreteObserverA } from './concrete-observerA';
-import { ConcreteObserverB } from './concrete-observerB';
-import { ObserverData } from './observer.interface';
+import { Observer, ObserverData } from './observer.interface';
+import { OBSERVERS } from './observer.tokens';
 
 @Injectable()
 export class ObserverService {
-  private subject = new ConcreteSubject();
-
-  constructor() {
-    const observerA = new ConcreteObserverA();
-    const observerB = new ConcreteObserverB();
-
-    this.subject.attach(observerA);
-    this.subject.attach(observerB);
+  constructor(
+    private readonly subject: ConcreteSubject,
+    @Inject(OBSERVERS) private readonly observers: Observer[]
+  ) {
+    for (const o of observers) {
+      this.subject.attach(o);
+    }
   }
 
   triggerEvent(event: ObserverData): void {

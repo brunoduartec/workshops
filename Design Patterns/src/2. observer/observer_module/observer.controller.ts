@@ -5,8 +5,12 @@ https://docs.nestjs.com/controllers#controllers
 import { Body, Controller, Post } from '@nestjs/common';
 import { ObserverService } from './observer.service';
 import { EventType, ObserverData } from './observer.interface';
+import { ApiProperty } from '@nestjs/swagger';
+import { IsString } from 'class-validator';
 
-interface EventBody {
+export class EventBody {
+  @ApiProperty({ example: 'Alguma informação do evento' })
+  @IsString()
   info: string;
 }
 
