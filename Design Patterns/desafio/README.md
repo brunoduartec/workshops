@@ -7,7 +7,7 @@
 
 ## Objetivo
 
-O desafio consiste em analisar e refatorar um código de um jogo simples de Arcanoid, implementado em JavaScript com Three.js, que foi propositalmente escrito violando diversos princípios SOLID. O objetivo é exercitar a identificação de problemas de design e a aplicação de Design Patterns para melhorar a estrutura do código.
+O desafio consiste em analisar e identificar o design pattern que pode ser usado no código de um jogo simples de Arcanoid, implementado em JavaScript com Three.js, que foi propositalmente escrito violando diversos princípios SOLID. O objetivo é exercitar a identificação de problemas de design e a aplicação de Design Patterns para melhorar a estrutura do código.
 
 ---
 
